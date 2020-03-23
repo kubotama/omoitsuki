@@ -23,7 +23,7 @@ tags:
 ```json:netlify.toml
 [build]
   build = yarn run build
-  functions = /dist/api
+  functions = /dist/functions
 ```
 
 ### netlify-lambdaをインストールする
