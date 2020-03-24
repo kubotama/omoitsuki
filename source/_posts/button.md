@@ -129,7 +129,7 @@ src/components/SampleButton.vueを修正(template以外は変更なし)するこ
 
 ## buttonのラベルのテストを追加
 
-tests/unit/button.jsに以下を追加
+tests/unit/button.spec.jsに以下を追加
 
 ```javascript
   it('ラベル(サンプルのラベル)が正しい。', () => {
