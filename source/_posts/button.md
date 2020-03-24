@@ -4,7 +4,11 @@ tags:
   - Vue.js
 ---
 
-Vue.jsで作成するwebページに、テスト駆動でbuttonを追加をする。
+Vue.jsで作成するwebページにbuttonを追加をするときに、以下のテストを作成する。
+
+- button(id=sampleButton)の存在をテスト
+- buttonのラベル(サンプルのボタン)をテスト
+- buttonがクリックされて呼び出されるメソッド(onClick)のテスト
 
 ## buttonを追加する前のディレクトリ構成とファイル
 
@@ -20,7 +24,7 @@ buttonを追加する前のディレクトリ構成
 
 src/main.js
 
-```javascript:src/main.js
+```javascript
 import Vue from "vue";
 import App from "./App.vue";
 
@@ -33,7 +37,7 @@ new Vue({
 
 src/App.vue
 
-```vue:src/App.vue
+```vue
 <template>
   <div id="app">
     <SampleButton />
@@ -56,7 +60,7 @@ export default {
 
 src/components/SampleButton.vue
 
-```vue:src/components/SampleButton.vue
+```vue
 <template>
   <div></div>
 </template>
@@ -69,4 +73,56 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped></style>
+```
+
+## buttonの存在を確認するテストを追加
+
+tests/unit/button.spec.js
+
+```javascript
+import { shallowMount } from '@vue/test-utils'
+import SampleButton from '@/components/SampleButton.vue'
+
+describe('追加するbuttonのidをsampleButtonとする。', () => {
+  let wrapper
+  beforeEach(() => {
+    wrapper = shallowMount(SampleButton)
+  })
+
+  it('存在する。', () => {
+    expect(wrapper.find('#sampleButton').exists()).toBeTruthy()
+  })
+})
+```
+
+以下のようにエラーになる。
+
+```sh
+FAIL  tests/unit/button.spec.js
+  追加するbuttonのidをsampleButtonとする。
+    ✕ 存在する。 (39ms)
+
+  ● 追加するbuttonのidをsampleButtonとする。 › 存在する。
+
+    expect(received).toBeTruthy()
+
+    Received: false
+
+       9 |
+      10 |   it('存在する。', () => {
+    > 11 |     expect(wrapper.find('#sampleButton').exists()).toBeTruthy()
+         |                                                    ^
+      12 |   })
+      13 | })
+      14 |
+```
+
+src/components/SampleButton.vueを修正(template以外は変更なし)することでテストは成功する。
+
+```vue
+<template>
+  <div>
+   <button id='sampleButton'></button>
+  </div>
+</template>
 ```
