@@ -37,7 +37,7 @@ new Vue({
 
 src/App.vue
 
-```vue
+```html
 <template>
   <div id="app">
     <SampleButton />
@@ -60,7 +60,7 @@ export default {
 
 src/components/SampleButton.vue
 
-```vue
+```html
 <template>
   <div></div>
 </template>
@@ -119,7 +119,7 @@ FAIL  tests/unit/button.spec.js
 
 src/components/SampleButton.vueを修正(template以外は変更なし)することでテストは成功する。
 
-```vue
+```html
 <template>
   <div>
    <button id='sampleButton'></button>
@@ -163,10 +163,68 @@ FAIL  tests/unit/button.spec.js
 
 src/components/SampleButton.vueを修正(template以外は変更なし)することでテストは成功する。
 
-```vue
+```html
 <template>
   <div>
    <button id='sampleButton'>サンプルのラベル</button>
   </div>
 </template>
 ```
+
+## buttonがクリックされて呼び出されるメソッドのテスト
+
+tests/unit/button.spec.jsに以下を追加
+
+```javascript
+  it('クリックするとonClickが呼び出される。', () => {
+    const onClick = jest.fn()
+    wrapper.setMethods({ onClick })
+    wrapper.find('#sampleButton').trigger('click')
+    expect(onclick).toHaveBeenCalledTimes(1)
+  })
+```
+
+以下のようにエラーになる。
+
+```sh
+FAIL  tests/unit/button.spec.js
+  追加するbuttonのidをsampleButtonとする。
+    ✓ 存在する。 (22ms)
+    ✓ ラベル(サンプルのラベル)が正しい。 (2ms)
+    ✕ クリックするとonClickが呼び出される。 (7ms)
+
+  ● 追加するbuttonのidをsampleButtonとする。 › クリックするとonClickが呼び出される。
+
+    TypeError: Cannot set property 'onClick' of undefined
+
+      18 |   it('クリックするとonClickが呼び出される。', () => {
+      19 |     const onClick = jest.fn()
+    > 20 |     wrapper.setMethods({ onClick })
+         |             ^
+      21 |     wrapper.find('#sampleButton').trigger('click')
+      22 |     expect(onclick).toHaveBeenCalledTimes(1)
+      23 |   })
+```
+
+src/components/SampleButton.vueを以下のように修正することでテストに成功する。
+
+```html
+<template>
+  <div>
+   <button id='sampleButton' @click="onClick">サンプルのラベル</button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "SampleButton",
+  methods: {
+    onClick() {
+      return
+    }
+  }
+};
+</script>
+```
+
+以上で、Vue.jsで作成するwebページにテスト駆動でbuttonを追加した。
