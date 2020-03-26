@@ -162,6 +162,8 @@ FAIL  tests/unit/button.spec.js
       18 |
 ```
 
+### buttonのラベルを変数にバインドしない場合
+
 src/components/SampleButton.vueを修正(template以外は変更なし)することでテストは成功する。
 
 ```html
@@ -170,6 +172,34 @@ src/components/SampleButton.vueを修正(template以外は変更なし)するこ
    <button id='sampleButton'>サンプルのラベル</button>
   </div>
 </template>
+```
+
+### buttonのラベルを変数にバインドする場合
+
+src/components/SampleButton.vueを修正することでテストは成功する。
+
+```html
+<template>
+  <div>
+    <button id="sampleButton">{{ sampleLabel }}</button>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "SampleButton",
+  data() {
+    return {
+      sampleLabel: "サンプルのラベル"
+    };
+  },
+  methods: {
+    onClick() {
+      return;
+    }
+  }
+};
+</script>
 ```
 
 ## buttonがクリックされて呼び出されるメソッドのテスト
