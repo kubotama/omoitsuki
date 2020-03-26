@@ -1,6 +1,5 @@
 ---
 title: Netlify functionsの設定
-date: 2020-03-21 22:22:06
 tags:
   - must
   - Netlify
