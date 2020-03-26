@@ -2,6 +2,7 @@
 title: buttonの追加
 tags:
   - Vue.js
+  - Jest
 ---
 
 Vue.jsで作成するwebページにbuttonを追加をするときに、以下のテストを作成する。
