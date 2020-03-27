@@ -1,14 +1,17 @@
 ---
-title: buttonの追加
+title: テスト駆動開発でbuttonを追加
 tags:
   - Vue.js
   - Jest
 ---
 
-Vue.jsで作成するwebページにbuttonを追加をするときに、以下のテストを作成する。
+Vue.jsで作成した空白のwebページに、Jestを利用したテスト駆動開発でbuttonを追加をする。
 
 - button(id=sampleButton)の存在をテスト
 - buttonのラベル(サンプルのボタン)をテスト
+  - buttonのラベルが変数にバインドされていない場合
+  - buttonのラベルが変数にバインドされている場合
+    - buttonのラベルがバインドされた変数のテスト
 - buttonがクリックされて呼び出されるメソッド(onClick)のテスト
 
 ## buttonを追加する前のディレクトリ構成とファイル
@@ -16,12 +19,34 @@ Vue.jsで作成するwebページにbuttonを追加をするときに、以下�
 buttonを追加する前のディレクトリ構成
 
 ```sh
+├ index.html
 └ src
     ├ App.vue
     ├ components
     │ └ SampleButton.vue
     └ main.js
- ```
+```
+
+index.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
+```
 
 src/main.js
 
@@ -201,6 +226,18 @@ export default {
 };
 </script>
 ```
+
+#### buttonのラベルがバインドされた変数のテストを追加
+
+buttonのラベルがバインドされた変数(sampleLabel)のテストを追加する。
+
+```javascript
+it('buttonにラベルにバインドされた変数が正しい。', () => {
+    expect(wrapper.vm.sampleLabel).toBe('サンプルのラベル')
+  })
+```
+
+既に正しく変数にバインドされているため、テストは成功する。
 
 ## buttonがクリックされて呼び出されるメソッドのテスト
 
