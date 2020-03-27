@@ -202,6 +202,18 @@ export default {
 </script>
 ```
 
+#### buttonのラベルがバインドされた変数のテストを追加
+
+buttonのラベルがバインドされた変数(sampleLabel)のテストを追加する。
+
+```javascript
+it('buttonにラベルにバインドされた変数が正しい。', () => {
+    expect(wrapper.vm.sampleLabel).toBe('サンプルのラベル')
+  })
+```
+
+既に正しく変数にバインドされているため、テストは成功する。
+
 ## buttonがクリックされて呼び出されるメソッドのテスト
 
 tests/unit/button.spec.jsに以下を追加
