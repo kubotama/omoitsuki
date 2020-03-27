@@ -19,7 +19,8 @@ Vue.jsで作成した空白のwebページに、Jestを利用したテスト駆�
 buttonを追加する前のディレクトリ構成
 
 ```sh
-├ index.html
+├ public
+│  └ index.html
 └ src
     ├ App.vue
     ├ components
@@ -27,7 +28,7 @@ buttonを追加する前のディレクトリ構成
     └ main.js
 ```
 
-index.html
+public/index.html
 
 ```html
 <!DOCTYPE html>
