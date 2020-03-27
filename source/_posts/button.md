@@ -5,7 +5,7 @@ tags:
   - Jest
 ---
 
-Vue.jsで作成した空白のwebページに、以下のテストの作成にあわせてbuttonを追加をする。
+Vue.jsで作成した空白のwebページに、Jestを利用したテスト駆動開発でbuttonを追加をする。
 
 - button(id=sampleButton)の存在をテスト
 - buttonのラベル(サンプルのボタン)をテスト
