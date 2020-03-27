@@ -19,11 +19,33 @@ Vue.jsで作成した空白のwebページに、Jestを利用したテスト駆�
 buttonを追加する前のディレクトリ構成
 
 ```sh
+├ index.html
 └ src
     ├ App.vue
     ├ components
     │ └ SampleButton.vue
     └ main.js
+```
+
+index.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
 ```
 
 src/main.js
