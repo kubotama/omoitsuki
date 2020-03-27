@@ -5,10 +5,13 @@ tags:
   - Jest
 ---
 
-Vue.jsで作成するwebページにbuttonを追加をするときに、以下のテストを作成する。
+Vue.jsで作成した空白のwebページに、以下のテストの作成にあわせてbuttonを追加をする。
 
 - button(id=sampleButton)の存在をテスト
 - buttonのラベル(サンプルのボタン)をテスト
+  - buttonのラベルが変数にバインドされていない場合
+  - buttonのラベルが変数にバインドされている場合
+    - buttonのラベルがバインドされた変数のテスト
 - buttonがクリックされて呼び出されるメソッド(onClick)のテスト
 
 ## buttonを追加する前のディレクトリ構成とファイル
