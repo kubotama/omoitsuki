@@ -24,7 +24,7 @@ buttonを追加する前のディレクトリ構成
     ├ components
     │ └ SampleButton.vue
     └ main.js
- ```
+```
 
 src/main.js
 
