@@ -1,5 +1,6 @@
 ---
 title: テスト駆動開発でbuttonを追加
+date: 2020-03-27
 tags:
   - Vue.js
   - Jest
