@@ -25,12 +25,12 @@ _config.ymlが初期設定のままなので、ここで見直して、以下の
 
 ## faviconの設定
 
-[ICOON MONO](https://icooon-mono.com/)から[頭のアイコン](https://icooon-mono.com/10226-%e9%a0%ad%e3%81%ae%e3%82%a2%e3%82%a4%e3%82%b3%e3%83%b3/)を、色はrgb(16, 64, 239)、サイズは256pxを指定して、pngファイルとしてダウンロードした。
+1. [ICOON MONO](https://icooon-mono.com/)から[頭のアイコン](https://icooon-mono.com/10226-%e9%a0%ad%e3%81%ae%e3%82%a2%e3%82%a4%e3%82%b3%e3%83%b3/)を、色はrgb(16, 64, 239)、サイズは256pxを指定して、pngファイルとしてダウンロードした。
 
-ダウンロードしたpngファイルを[favicon generator](https://favicon.il.ly/)でicoファイルに変換した。
+1. ダウンロードしたpngファイルを[favicon generator](https://favicon.il.ly/)でicoファイルに変換した。
 
-変換したファイルを/themes/landscape/sourceにfavicon.icoとして置いた。
+1. 変換したファイルを/themes/landscape/sourceにfavicon.icoとして置いた。
 
-テーマの設定ファイル(/themes/landscape/_config.yml)のfavicon項目をfavicon.icoに変更した。
+1. テーマの設定ファイル(/themes/landscape/_config.yml)のfavicon項目をfavicon.icoに変更した。
 
 ## Google analyticsの設定
