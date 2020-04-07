@@ -33,3 +33,5 @@ _config.ymlが初期設定のままなので、ここで見直して、以下の
 1. テーマの設定ファイル(/themes/landscape/_config.yml)のfavicon項目をfavicon.icoに変更した。
 
 ## Google analyticsの設定
+
+_config.ymlの設定以外に、Googleアナリティクスのコンソールの設定も必要そうなので、別エントリーとする。
