@@ -6,7 +6,7 @@ tags:
   - Jest
 ---
 
-Vue.jsで作成した空白のwebページに、Jestを利用したテスト駆動開発でtextareaを追加をする。
+vue-cliで作成したプロジェクトをベースにした空白のwebページに、Jestを利用したテスト駆動開発でtextareaを追加をする。
 
 - textarea(id=sampleArea)の存在をテスト
 - textareaの初期値(='')をテスト
@@ -32,7 +32,7 @@ public/index.html
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -122,7 +122,7 @@ it("textareaの存在をテストする。", () => {
 });
 ```
 
-以下のようにtextareaが見つからないエラーになる。
+textareaにidが割り当てられていないため、テストは失敗する。
 
 ```sh
 FAIL  tests/unit/textarea.spec.js
@@ -144,8 +144,7 @@ FAIL  tests/unit/textarea.spec.js
       21 |
 ```
 
-textareaにidが割り当てられていないため、テストは失敗する。src/components/SampleTextArea.vueで、textareaにidを追加する
-ことでテストは成功する。
+src/components/SampleTextArea.vueで、textareaにidを追加することでテストは成功する。
 
 ```html
 <template>
@@ -248,6 +247,7 @@ export default {
     };
   }
 };
+</script>
 ```
 
 以上で、Vue.jsで作成するwebページにテスト駆動でtextareaを追加した。
