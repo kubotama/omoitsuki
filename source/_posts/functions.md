@@ -209,3 +209,7 @@ describe("Netlify functions", () => {
 buildを実行すると`Unknown browser query `dead``というエラーになる。
 
 package.jsonの"browserslist"ブロックから`"not dead"`を削除するとエラーがなくなる。
+
+さきにyarn serveを実行するとfunctionsのポートも専有されるが<http://localhost:9000/.netlify/functions/sample>にアクセスするとエラーになる。lsof -i:9000で確認したIDのプロセスをkillした後で、`npx netlify-lambda serve src/lambda`を実行するとfunctionsがローカル環境で起動する。
+
+functionsのメソッドの中で、event.headers['client-ip']で呼び出し元のIPアドレスが取得できるはずであるが、ローカル環境では取得できないバグがあった。2019年7月に修正されているはずだが、反映されていない？
