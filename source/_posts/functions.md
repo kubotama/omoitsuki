@@ -8,8 +8,6 @@ tags:
 
 ## 概要
 
-以下の手順で、Netlify Functionsを利用するサーバーレスアプリケーションを開発する。
-
 Netlify Functionsの設定、およびNetlify Functionsのコード(以下コードと呼ぶ)の作成、コードを呼び出すwebページの作成について説明する。
 
 [Netlifyのドキュメント](https://docs.netlify.com/functions/configure-and-deploy/)を参考にして、以下の手順で設定する。
@@ -153,3 +151,12 @@ export function handler(event, context, callback) {
 `yarn build`を実行すると`Unknown browser query 'dead'`というエラーになる。
 
 package.jsonの"browserslist"ブロックから`"not dead"`を削除するとエラーがなくなる。
+
+## コードの呼び出しのテストを作成する
+
+コードの呼び出しのテストを作成する。
+
+- ボタンをクリックされると呼び出される。
+- axios.getが呼び出される。
+- 引数は、コードのURL(ローカルの場合は<http://localhost:9000/.netlify/functions/sample>)である。
+- ボタンがクリックされた後は、テキスト領域に"sample"が設定されている。
