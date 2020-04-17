@@ -1,40 +1,40 @@
 ---
-title: Netlify functionsの設定
+title: Netlify functionsを利用したサーバーレスアプリケーションの開発
 tags:
   - Netlify
+  - Vue.js
+  - Jest
 ---
 
-## 目的
+## 概要
 
-vue-cliで作成したプロジェクトをベースにした空白のwebページに、Netlify Functionsにアクセスするメソッドをクリックすろと呼び出すボタンを追加する。
+以下の手順で、Netlify Functionsを利用するサーバーレスアプリケーションを開発する。
 
-## 作業手順
+Netlify Functionsの設定、およびNetlify Functionsのコード(以下コードと呼ぶ)の作成、コードを呼び出すwebページの作成について説明する。
 
 [Netlifyのドキュメント](https://docs.netlify.com/functions/configure-and-deploy/)を参考にして、以下の手順で設定する。
 
-### GitHubのリポジトリを作成する
+## GitHubのリポジトリを作成する
 
-Netlifyと連携するためのリポジトリを作成する。ここでは[サンプルのリポジトリ](https://github.com/kubotama/sample_functions)を作成する。
+Netlifyと連携するためのリポジトリを作成する。ここでは[サンプルのリポジトリ](https://github.com/kubotama/sample_functions)を作成した。
 
-### ローカル環境にクローンする
-
-`git clone git@github.com:kubotama/sample_functions.git functions`で作成したリポジトリを、ローカル環境にクローンする。リポジトリ名が長いのでディレクトリ名をfunctionsとする。
-
-### vueプロジェクトを作成する
-
-`vue create functions`でvueプロジェクトを作成する。
-
-### ボタン1つとテキストを表示するwebページを作成する
-
-[テスト駆動開発でbuttonを追加](https://omoitsuki.netlify.com/2020/03/26/button/)を参考にして、ボタン1つとテキストを表示するwebページを作成する。作成したソースコードをローカル環境のgitのリポジトリにコミットして、GitHubにプッシュする。
-
-### GitHubのリポジトリとNetlifyのサイトを関連付ける
+## GitHubのリポジトリとNetlifyのサイトを関連付ける
 
 [Netlifyのサイト](https://kubotama-sample-functions.netlify.com/)を作成して、GitHubのリポジトリと関連付けて、masterブランチが更新されるとNetlifyのサイトが更新されるように設定する。
 
-### netlify-lambdaをインストールする
+## ローカル環境にクローンする
 
-ここからは試行錯誤をするので、間違ったことも含めて詳しく記録する。
+`git clone git@github.com:kubotama/sample_functions.git functions`で作成したリポジトリを、ローカル環境にクローンする。リポジトリ名が長いのでディレクトリ名をfunctionsとした。
+
+## vueプロジェクトを作成する
+
+コードを呼び出すwebページを作成するために、`vue create functions`を実行する。オプションとして、テストツールとしてJestを選択する。
+
+## ボタン1つとテキストを表示するwebページを作成する
+
+[テスト駆動開発でbuttonを追加](https://omoitsuki.netlify.com/2020/03/26/button/)を参考にして、ボタン1つとテキストを表示するwebページを作成する。作成したソースコードをローカル環境のgitのリポジトリにコミットして、GitHubにプッシュする。
+
+## netlify-lambdaをインストールする
 
 以下のコマンドでnetlify-lambdaをインストールする。
 
@@ -48,11 +48,11 @@ Netlifyと連携するためのリポジトリを作成する。ここでは[サ
 % vue add netlify-lambda
 ```
 
-プラグインをインストールすると以下のファイルが生成される。
+プラグインをインストールすると、以下のファイルが生成される。
 
 netlify.toml
 
-```toml
+```yaml
 [build]
   command = "yarn build"
   functions = "lambda"
@@ -71,124 +71,27 @@ export function handler(event, context, callback) {
 }
 ```
 
-### axiosをインストールする
+## axiosをインストールする
 
-Netlify functionsにアクセスするためのHTTPクライアントとして利用するaxiosを以下のコマンドでインストールする。
+Netlify functionsにアクセスするHTTPクライアントとして、axiosを以下のコマンドでインストールする。
 
 ```sh
 % yarn add axios
 ```
 
-### functionsを確認するテストを追加する
+## コードを確認するテストを追加する
 
-Netlify functionsで実装するAPIの仕様を以下のとおりとする。
+コードの仕様を以下のとおりとする。
 
-- 名称はsampleとする。
+- 名称はsampleとする。URLは<http://サーバー名/.netlify/functions/sample>となる。
 - ステータスコードは200を返す。
-- "サンプル"という文字列を返す。
+- "sample"という文字列を返す。
 
 これらを確認するテストを作成する。
 
-最初に以下のテストを作成した。
-
 ```javascript
-it("ステータスコードとデータを確認する。", () => {
-  axios
-    .get("/.netlify/functions/sample")
-    .then(response => {
-      expect(response.status).toBe(200);
-      expect(response.data).toBe("サンプル");
-    });
-  });
-```
+import axios from "axios";
 
-該当するURLが存在しないため失敗するはずが、成功してしまった。axios.getが失敗した場合のcatchがないためと考えて、以下に修正した。
-
-```javascript
-it("ステータスコードとデータを確認する。", () => {
-  axios
-    .get("/.netlify/functions/sample")
-    .then(response => {
-      expect(response.status).toBe(200);
-      expect(response.data).toBe("サンプル");
-    })
-    .catch(() => {
-      expect(false).toBeTruthy();
-    });
-  });
-```
-
-これでもテストに成功した。非同期処理が終了した後にthen, catchが実行されていないためと考えて、以下に修正した。
-
-```javascript
-it("ステータスコードとデータを確認する。", async => {
-  const res = await axios.get("/.netlify/functions/sample");
-  expect(response.status).toBe(200);
-  expect(response.data).toBe("サンプル");
-});
-```
-
-Network Errorが発生した。package.jsonのjestブロックに`"testEnvironment": "node"`を追加したところ、これまで成功していた他のテストもすべて失敗した。
-
-あらためて以下のテストを作成した。catchを実行したときに失敗する適切なjestのmatchが見当たらないため、強引に失敗させている。
-
-```javascript
-it("ステータスコードとデータを確認する。", done => {
-  axios
-    .get("/.netlify/functions/sample")
-    .then(response => {
-      expect(response.status).toBe(200);
-      expect(response.data).toBe("サンプル");
-      done();
-    })
-    .catch(() => {
-      expect(false).toBeTruthy();
-      done();
-    });
-  });
-```
-
-意図した通り、catchで失敗するようになった。
-
-### ローカル環境でサーバーを立ち上げる
-
-以下のコマンドをローカル環境でサーバーを立ち上げる。
-
-```bash
-% netlify-lambda serve src/lambda
-```
-
-<http://localhost:9000/.netlify/functions/hello>にwebブラウズでアクセスすると、`{"msg":"Hello, World!"}`が表示されることを確認する。
-
-### テストを実行する
-
-hello.jsをsample.jsに変更して、 仕様にあわせて以下のように修正する。
-
-```javascript
-export function handler(event, context, callback) {
-  console.log(event);
-  callback(null, {
-    statusCode: 200,
-    body: "サンプル"
-  });
-}
-```
-
-テストを実行するとError: Cross origin http://localhost forbiddenで失敗する。jestの実行環境がjsdomのため、CORSの制限がかかるのが原因らしい。jestの実行環境を"testEnvironment": "node"を設定するとCORSは回避できるが、ブラウザ環境を前提としている他のテストが動かなくなる。
-
-[JESTのドキュメント](https://jestjs.io/docs/en/configuration#testenvironment-string)を参照して、ファイルごとに実行環境を設定できるということなので、button.spec.jsとfunctons.spec.jsに分割して、ファイルの先頭に以下を追加することで、実行環境をnodeに設定する。
-
-```javascript
-/**
- * @jest-environment jsdom
- */
-```
-
-あらためてテストを実行したが、catchを実行して失敗する。
-
-いろいろと調べた結果、expectの失敗が原因でcatchが実行されていることがわかった。Promiseのthenでexpectを実行して失敗するとcatchが実行されてしまうので、テストを以下のように書き換えた。
-
-```javascript
 describe("Netlify functions", () => {
   it("ステータスコードとデータを確認する。", async () => {
     let response;
@@ -206,10 +109,47 @@ describe("Netlify functions", () => {
 });
 ```
 
-buildを実行すると`Unknown browser query `dead``というエラーになる。
+対象とする[URL](http://localhost:9000/.netlify/functions/sample)が存在しないため、ここではテストは失敗する。
+
+### Jestの実行モード
+
+テストを実行するとError: Cross origin <http://localhost> forbiddenでエラーになる。Jestの実行環境がjsdomモードのため、CORSに違反するためである。nodeモードでJestを実行することでCORSを回避できる。テストモードの切替単位は、全体とファイル単位の2通りがある。他のテストはjsdomモードで実行する必要があり、jsdomモードとnodeモードのテストを共存する必要があるため、ファイル単位での切替とする。
+
+[Jestのドキュメント](https://jestjs.io/docs/en/configuration#testenvironment-string)を参照して、ファイルごとに実行環境を設定するために、jsdomモードで実行するfunctions.spec.jsとnodeモードで実行するlambda.spec.jsに分割して、lambda.jsファイルの先頭に以下を追加することで、実行環境をnodeに設定する。
+
+```javascript
+/**
+ * @jest-environment jsdom
+ */
+```
+
+## ローカル環境でfunctionsを起動する
+
+以下のコマンドをローカル環境でfunctionsを起動する。
+
+```bash
+% netlify-lambda serve src/lambda
+```
+
+<http://localhost:9000/.netlify/functions/hello>にwebブラウズでアクセスすると、`{"msg":"Hello, World!"}`が表示されることを確認する。
+
+## コードをテストする
+
+hello.jsをsample.jsにファイル名を変更して、 仕様にあわせて以下のように修正するとテストが成功する。
+
+```javascript
+export function handler(event, context, callback) {
+  callback(null, {
+    statusCode: 200,
+    body: "sample"
+  });
+}
+```
+
+ここまでで、Netlify Functionsの設定およびコードが作成されている。
+
+### ビルドのエラーを解消する
+
+`yarn build`を実行すると`Unknown browser query 'dead'`というエラーになる。
 
 package.jsonの"browserslist"ブロックから`"not dead"`を削除するとエラーがなくなる。
-
-さきにyarn serveを実行するとfunctionsのポートも専有されるが<http://localhost:9000/.netlify/functions/sample>にアクセスするとエラーになる。lsof -i:9000で確認したIDのプロセスをkillした後で、`npx netlify-lambda serve src/lambda`を実行するとfunctionsがローカル環境で起動する。
-
-functionsのメソッドの中で、event.headers['client-ip']で呼び出し元のIPアドレスが取得できるはずであるが、ローカル環境では取得できないバグがあった。2019年7月に修正されているはずだが、反映されていない？
