@@ -203,7 +203,7 @@ describe("コードの呼び出し", () => {
 });
 ```
 
-テストを成功するために、SampleFunctions.jsのonClickメソッドを以下のように修正する。
+テストを成功するために、SampleFunctions.vueのonClickメソッドを以下のように修正する。
 
 ```javascript
     onClick() {
@@ -234,7 +234,7 @@ describe("コードの呼び出し", () => {
 | --- | --- |
 | <http://localhost/> | <http://localhost:9000/.netlify/functions/sample> |
 | <http://localhost:8080> | <http://localhost:9000/.netlify/functions/sample> |
-| <https://kubotama-sample-functions.netlify.com/> | <https://kubotama-sample-functions.netlify.com/.netlify/functions/sample> |
+| <https://kubotama-sample-functions.netlify.app/> | <https://kubotama-sample-functions.netlify.app/.netlify/functions/sample> |
 
 click.spec.jsに以下を追加する。
 
