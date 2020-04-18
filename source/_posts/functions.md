@@ -139,7 +139,7 @@ hello.jsをsample.jsにファイル名を変更して、 仕様にあわせて�
 export function handler(event, context, callback) {
   callback(null, {
     statusCode: 200,
-    body: "sample"
+    data: "sample"
   });
 }
 ```
@@ -170,7 +170,7 @@ import SampleFunctions from "@/components/SampleFunctions.vue";
 
 jest.mock("axios");
 axios.get.mockImplementation(() =>
-  Promise.resolve({ statusCode: 200, body: "sample" })
+  Promise.resolve({ statusCode: 200, data: "sample" })
 );
 
 describe("コードの呼び出し", () => {
@@ -209,7 +209,7 @@ describe("コードの呼び出し", () => {
       axios
         .get("http://localhost:9000/.netlify/functions/sample")
         .then(response => {
-          this.sampleText = response.body;
+          this.sampleText = response.data;
         })
         .catch(error => {
           console.error(error);
