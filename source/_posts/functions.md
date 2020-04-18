@@ -1,5 +1,6 @@
 ---
 title: Netlify functionsを利用したサーバーレスアプリケーションの開発
+date: 2020-04-18
 tags:
   - Netlify
   - Vue.js
