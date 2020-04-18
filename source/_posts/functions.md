@@ -216,3 +216,57 @@ describe("コードの呼び出し", () => {
         });
     }
 ```
+
+### コードのURLを取得する
+
+ここまではコードのURLを決め打ちでハードコードしているが、Netlify環境にあわせて、取得する機能を追加する。
+
+コードのURLを返すメソッドをgetFunctionUrlとして、このメソッドのテストを追加する。テストの要件は以下の通りとする。
+
+- 引数としてアクセスしているwebページのURL(location.href)を受け取る。
+- ホスト名がlocalhostの場合には、ポート番号を9000とする。
+- webページのURLに/.netlify/functions/sampleを追加したURLを返す。
+
+テストするURLは以下の通りとする。
+
+| 引数として渡すURL | 返すべきURL |
+| --- | --- |
+| <http://localhost/> | <http://localhost:9000/.netlify/functions/sample> |
+| <http://localhost:8080> | <http://localhost:9000/.netlify/functions/sample> |
+| <https://kubotama-sample-functions.netlify.com/> | <https://kubotama-sample-functions.netlify.com/.netlify/functions/sample> |
+
+click.spec.jsに以下を追加する。
+
+```javascript
+describe("コードのURLを取得する。", () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallowMount(SampleFunctions);
+  });
+
+  it.each`
+    beforeUrl                                           | afterUrl
+    ${"http://localhost/"}                              | ${"http://localhost:9000/.netlify/functions/sample"}
+    ${"http://localhost:8080"}                          | ${"http://localhost:9000/.netlify/functions/sample"}
+    ${"https://kubotama-sample-functions.netlify.com/"} | ${"https://kubotama-sample-functions.netlify.com/.netlify/functions/sample"}
+  `("$before -> $after", ({ beforeUrl, afterUrl }) => {
+    expect(wrapper.vm.getFunctionUrl(beforeUrl)).toBe(afterUrl);
+  });
+});
+```
+
+SampleFunctionsのonClickメソッドをgetFunctionUrlを呼び出すように書き換える。
+
+```javascript
+    onClick() {
+      axios
+        .get(this.getFunctionUrl(window.location.href))
+        .then(response => {
+          this.sampleText = response.data;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
+````
