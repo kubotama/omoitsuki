@@ -271,6 +271,12 @@ SampleFunctions.vueのonClickメソッドをgetFunctionUrlを呼び出すよう�
     },
 ````
 
+## Netlify環境への適用
+
+作成したプログラムをGitのリポジトリにコミットして、GitHubのリポジトリにプッシュする。GitHubのリポジトリとNetlifyのサイトが正しく連携していれば、自動的にNetlifyのサイトが更新されて、自動的にNetlify Functionsが開始される。
+
+Netlifyのサイトを表示して、ボタンをクリックすると、ボタンの下に表示されている「メッセージを表示する場所」が「sample」に変更する。
+
 ## (オプション)ローカルでの検証環境でのCORSを回避する
 
 ローカルの検証環境のボタンを表示するwebページのURLは<http://localhost:8080>で、コードのURLは<http://localhost:9090/.netlify/functions/sample>のため、CORS制約に違反する。
