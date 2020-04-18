@@ -256,7 +256,7 @@ describe("コードのURLを取得する。", () => {
 });
 ```
 
-SampleFunctionsのonClickメソッドをgetFunctionUrlを呼び出すように書き換える。
+SampleFunctions.vueのonClickメソッドをgetFunctionUrlを呼び出すように書き換える。
 
 ```javascript
     onClick() {
