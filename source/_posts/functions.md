@@ -271,7 +271,7 @@ SampleFunctions.vueのonClickメソッドをgetFunctionUrlを呼び出すよう�
     },
 ````
 
-## ローカルでの検証環境でのCORSを回避する
+## (オプション)ローカルでの検証環境でのCORSを回避する
 
 ローカルの検証環境のボタンを表示するwebページのURLは<http://localhost:8080>で、コードのURLは<http://localhost:9090/.netlify/functions/sample>のため、CORS制約に違反する。
 
