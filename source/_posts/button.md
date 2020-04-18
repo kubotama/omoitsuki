@@ -1,5 +1,6 @@
 ---
 title: テスト駆動開発でbuttonを追加
+date: 2020-03-27
 tags:
   - Vue.js
   - Jest
@@ -14,12 +15,15 @@ Vue.jsで作成した空白のwebページに、Jestを利用したテスト駆�
     - buttonのラベルがバインドされた変数のテスト
 - buttonがクリックされて呼び出されるメソッド(onClick)のテスト
 
+完成したソースコードは[GitHubのリポジトリ](https://github.com/kubotama/sample_button)にある。
+
 ## buttonを追加する前のディレクトリ構成とファイル
 
 buttonを追加する前のディレクトリ構成
 
 ```sh
-├ index.html
+├ public
+│  └ index.html
 └ src
     ├ App.vue
     ├ components
@@ -27,7 +31,7 @@ buttonを追加する前のディレクトリ構成
     └ main.js
 ```
 
-index.html
+public/index.html
 
 ```html
 <!DOCTYPE html>
