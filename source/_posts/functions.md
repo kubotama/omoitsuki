@@ -154,9 +154,65 @@ package.jsonの"browserslist"ブロックから`"not dead"`を削除するとエ
 
 ## コードの呼び出しのテストを作成する
 
-コードの呼び出しのテストを作成する。
+コードの呼び出しのテストを作成する。 テストの要件は以下の通りとする。
 
 - ボタンをクリックされると呼び出される。
 - axios.getが呼び出される。
 - 引数は、コードのURL(ローカルの場合は<http://localhost:9000/.netlify/functions/sample>)である。
-- ボタンがクリックされた後は、テキスト領域に"sample"が設定されている。
+- ボタンがクリックされた後は、テキスト領域に'sample'が設定されている。
+
+describeの前でaxiosをモックにする必要があるため、わかりやすくするため、別ファイル(click.spec.js)を作成する。
+
+```javascript
+import axios from "axios";
+import { shallowMount } from "@vue/test-utils";
+import SampleFunctions from "@/components/SampleFunctions.vue";
+
+jest.mock("axios");
+axios.get.mockImplementation(() =>
+  Promise.resolve({ statusCode: 200, body: "sample" })
+);
+
+describe("コードの呼び出し", () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallowMount(SampleFunctions);
+  });
+
+  it("axios.getを呼び出す。", () => {
+    wrapper.find("#sampleButton").trigger("click");
+
+    expect(axios.get.mock.calls.length).toBe(1);
+  });
+
+  it("引数を確認する。", () => {
+    wrapper.find("#sampleButton").trigger("click");
+
+    expect(axios.get.mock.calls[0].length).toBe(1);
+    expect(axios.get.mock.calls[0][0]).toBe(
+      "http://localhost:9000/.netlify/functions/sample"
+    );
+  });
+
+  it("ボタンがクリックされた後は、テキスト領域に'sample'が設定されている。", async () => {
+    await wrapper.find("#sampleButton").trigger("click");
+    expect(wrapper.vm.sampleText).toBe("sample");
+  });
+});
+```
+
+テストを成功するために、SampleFunctions.jsのonClickメソッドを以下のように修正する。
+
+```javascript
+    onClick() {
+      axios
+        .get("http://localhost:9000/.netlify/functions/sample")
+        .then(response => {
+          this.sampleText = response.body;
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+```
