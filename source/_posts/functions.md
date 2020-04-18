@@ -8,7 +8,7 @@ tags:
 
 ## 概要
 
-Netlify Functionsの設定、およびNetlify Functionsのコード(以下コードと呼ぶ)の作成、コードを呼び出すwebページの作成について説明する。
+Netlify Functionsの設定、およびNetlify Functionsのコード(以下コードと呼ぶ)の作成、コードを呼び出すwebページの作成について説明する。サンプルのアプリケーションとして、webページに表示されているボタンをクリックすると呼び出されるウェブブラウザ上のJavascriptのメソッドからコードにアクセスして、返された文字列をwebページ上に表示する。
 
 [Netlifyのドキュメント](https://docs.netlify.com/functions/configure-and-deploy/)を参考にして、以下の手順で設定する。
 
@@ -270,3 +270,24 @@ SampleFunctionsのonClickメソッドをgetFunctionUrlを呼び出すように�
         });
     },
 ````
+
+## ローカルでの検証環境でのCORSを回避する
+
+ローカルの検証環境のボタンを表示するwebページのURLは<http://localhost:8080>で、コードのURLは<http://localhost:9090/.netlify/functions/sample>のため、CORS制約に違反する。
+
+sample.jsを以下の様に修正して、検証環境のみAccess-Control-Allow-Originを追加することでCORSを回避する。
+
+```javascript
+export function handler(event, context, callback) {
+  const data = {
+    statusCode: 200,
+    body: "sample"
+  };
+  if (event.headers.host === "localhost:9000") {
+    data["headers"] = {
+      "Access-Control-Allow-Origin": event.headers.origin
+    };
+  }
+  callback(null, data);
+}
+```
