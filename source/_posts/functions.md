@@ -9,39 +9,43 @@ tags:
 
 ## 概要
 
-Netlify Functionsの設定、およびNetlify Functionsのコード(以下コードと呼ぶ)の作成、コードを呼び出すwebページの作成について説明する。サンプルのアプリケーションとして、webページに表示されているボタンをクリックすると呼び出されるウェブブラウザ上のJavascriptのメソッドからコードにアクセスして、返された文字列をwebページ上に表示する。
+Netlify Functionsの設定、およびNetlify Functionsのコード(以下コードと呼ぶ)の作成、コードを呼び出すwebページの作成について説明する。サンプルとして、ボタンをクリックするとコードにアクセスして、コードから返された文字列を表示するwebページを作成した。
+
+作成したwebページのソースコードは[こちらのリポジトリ](https://github.com/kubotama/sample_functions)、webサイトは[こちらのサイト](https://kubotama-sample-functions.netlify.com/)である。
 
 [Netlifyのドキュメント](https://docs.netlify.com/functions/configure-and-deploy/)を参考にして、以下の手順で設定する。
 
 ## GitHubのリポジトリを作成する
 
-Netlifyと連携するためのリポジトリを作成する。ここでは[サンプルのリポジトリ](https://github.com/kubotama/sample_functions)を作成した。
+Netlifyと連携するためのリポジトリを作成する。
 
 ## GitHubのリポジトリとNetlifyのサイトを関連付ける
 
-[Netlifyのサイト](https://kubotama-sample-functions.netlify.com/)を作成して、GitHubのリポジトリと関連付けて、masterブランチが更新されるとNetlifyのサイトが更新されるように設定する。
+Netlifyのサイトを作成して、GitHubのリポジトリと関連付けて、masterブランチが更新されるとNetlifyのサイトが更新されるように設定する。
 
 ## ローカル環境にクローンする
 
-`git clone git@github.com:kubotama/sample_functions.git functions`で作成したリポジトリを、ローカル環境にクローンする。リポジトリ名が長いのでディレクトリ名をfunctionsとした。
+作成したリポジトリを、ローカル環境にクローンする。ここではクローンしたディレクトリをfunctionsとする。
 
 ## vueプロジェクトを作成する
 
-コードを呼び出すwebページを作成するために、`vue create functions`を実行する。オプションとして、テストツールとしてJestを選択する。
+コードを呼び出すwebページを作成するために、`vue create functions`を実行する。オプションのテストツールとしてJestを選択する。
 
 ## ボタン1つとテキストを表示するwebページを作成する
 
 [テスト駆動開発でbuttonを追加](https://omoitsuki.netlify.com/2020/03/26/button/)を参考にして、ボタン1つとテキストを表示するwebページを作成する。作成したソースコードをローカル環境のgitのリポジトリにコミットして、GitHubにプッシュする。
 
+masterブランチを更新して、関連付けたNetlifyのサイトに、作成したwebページが表示されることを確認する。
+
 ## netlify-lambdaをインストールする
 
-以下のコマンドでnetlify-lambdaをインストールする。
+Netlify Functionsをローカル環境でテストするために、以下のコマンドでnetlify-lambdaをインストールする。
 
 ```sh
 % yarn add netlify-lambda
 ```
 
-以下のコマンドで、netlify-lambdaパッケージのvue-cliプラグインをインストールする。
+続いて以下のコマンドで、netlify-lambdaパッケージのvue-cliプラグインをインストールする。
 
 ```sh
 % vue add netlify-lambda
