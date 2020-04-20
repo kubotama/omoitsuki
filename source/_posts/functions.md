@@ -261,6 +261,19 @@ describe("コードのURLを取得する。", () => {
 });
 ```
 
+上記のテストを成功するように作成したgetFunctionUrlは以下の通りである。
+
+```javascript
+    getFunctionUrl(pageUrl) {
+      const url = new URL(pageUrl);
+      if (url.hostname === "localhost") {
+        url.port = 9000;
+      }
+      url.pathname = ".netlify/functions/sample";
+      return url.href;
+    }
+```
+
 SampleFunctions.vueのonClickメソッドをgetFunctionUrlを呼び出すように書き換える。
 
 ```javascript
