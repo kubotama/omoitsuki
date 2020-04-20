@@ -98,7 +98,7 @@ src/lambda/hello.jsをsrc/lambda/title.jsに変更して、テストを成功す
 | <https://must-kubotama.netlify.app/> | 1 | <https://must-kubotama.netlify.app/> | \[Markup Support Tool\](<https://must-kubotama.netlify.app/>) |
 | <http://localhost> | 1 | <http://localhost> | <http://localhost> |
 
-上記を確認するテストを作成する。ファイル名をmdlink.spec.jsとする。
+上記を確認するテストを作成する。ファイル名をmd.link.spec.jsとする。
 
 ```javascript
 ```
