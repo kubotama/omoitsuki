@@ -48,6 +48,33 @@ export function handler(event, context, callback) {
 }
 ```
 
+### コードのURL取得のテストを作成
+
+コードのURLを返すメソッドのテストを追加する。テストの要件は以下の通りとする。
+
+- メソッド名をgetFunctionUrlとする。MustUi.vueに定義する。
+- 引数としてアクセスしているwebページのURL(location.href)を受け取る。
+- ホスト名がlocalhostの場合には、ポート番号を9000とする。
+- webページのURLに/.netlify/functions/titleを追加したURLを返す。
+
+テストするURLは以下の通りとする。
+
+| 引数として渡すURL | 返すべきURL |
+| --- | --- |
+| <http://localhost/> | <http://localhost:9000/.netlify/functions/title> |
+| <http://localhost:8080> | <http://localhost:9000/.netlify/functions/title> |
+| <https://must-kubotama.netlify.app/> | <https://must-kubotama.netlify.app/.netlify/functions/title> |
+
+```javascript
+```
+
+## コードのURL取得のテストを成功するメソッドを作成
+
+src/components/MustUi.vueにgetFunctionUrlを作成する。
+
+```javascript
+```
+
 ## コードを確認するテストを作成
 
 コードの仕様を以下のとおりとする。
