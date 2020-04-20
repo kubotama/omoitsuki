@@ -69,3 +69,10 @@ export function handler(event, context, callback) {
 | <http://localhost/> || 204 | |
 
 上記を確認するテストを作成する。ファイル名をtitle.node.spec.jsとする。
+
+## テストを成功する関数を作成
+
+src/lambda/hello.jsをsrc/lambda/title.jsに変更して、テストを成功する関数を作成する。
+
+```javascript
+```
