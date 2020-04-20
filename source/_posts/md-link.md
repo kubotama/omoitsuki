@@ -65,15 +65,9 @@ export function handler(event, context, callback) {
 | <http://localhost:8080> | <http://localhost:9000/.netlify/functions/title> |
 | <https://must-kubotama.netlify.app/> | <https://must-kubotama.netlify.app/.netlify/functions/title> |
 
-```javascript
-```
-
 ## コードのURL取得のテストを成功するメソッドを作成
 
 src/components/MustUi.vueにgetFunctionUrlを作成する。
-
-```javascript
-```
 
 ## コードを確認するテストを作成
 
@@ -101,9 +95,6 @@ src/components/MustUi.vueにgetFunctionUrlを作成する。
 
 src/lambda/hello.jsをsrc/lambda/title.jsに変更して、テストを成功する関数を作成する。
 
-```javascript
-```
-
 ## ボタンをクリックすると呼び出されるメソッドのテストを作成
 
 ボタンをクリックすると呼び出されるメソッドのテストを作成する。メソッドの要件は以下の通りとする。
@@ -127,12 +118,6 @@ src/lambda/hello.jsをsrc/lambda/title.jsに変更して、テストを成功す
 
 上記を確認するテストを作成する。ファイル名をmd.link.spec.jsとする。
 
-```javascript
-```
-
 ## メソッドを確認するテストを成功するメソッドを作成
 
 src/components/MustUi.vueのonMdLinkメソッドを作成する。
-
-```javascript
-```
