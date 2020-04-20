@@ -104,3 +104,8 @@ src/lambda/hello.jsをsrc/lambda/title.jsに変更して、テストを成功す
 ```
 
 ## メソッドを確認するテストを成功するメソッドを作成
+
+src/components/MustUi.vueのonMdLinkメソッドを作成する。
+
+```javascript
+```
