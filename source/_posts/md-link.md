@@ -61,7 +61,6 @@ export function handler(event, context, callback) {
 
 | 引数として渡すURL | 返すべきURL |
 | --- | --- |
-| <http://localhost/> | <http://localhost:9000/.netlify/functions/title> |
 | <http://localhost:8080> | <http://localhost:9000/.netlify/functions/title> |
 | <https://must-kubotama.netlify.app/> | <https://must-kubotama.netlify.app/.netlify/functions/title> |
 
