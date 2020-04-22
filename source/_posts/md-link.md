@@ -91,9 +91,75 @@ src/components/MustUi.vueにgetFunctionUrlを作成する。
 
 上記を確認するテストを作成する。ファイル名をtitle.node.spec.jsとする。
 
+```javascript
+/**
+ * @jest-environment node
+ */
+
+import axios from "axios";
+
+describe("Netlify Functionsから返されるステータスコードとデータを確認する。", () => {
+  it.each`
+  url | title | statusCode
+  ${"http://example.com"} | ${"Example Domain"} | ${200}
+  ${"https://must-kubotama.netlify.app"} | ${"MarkUp Support Tool by netlify"} | ${200}
+  ${"https://omoitsuki.netlify.app"} | ${"思いつきを書くブログ"} | ${200}
+  ${""} | ${""} | ${204}
+  ${"http://localhost"} | ${""} | ${204}
+  `("$url", async ({url, title, statusCode}) => {
+    let response;
+    try {
+      response = await axios.get(
+        "http://localhost:9000/.netlify/functions/title?url=" + url
+      );
+    } catch (e) {
+      console.error(e);
+      expect(false).toBeTruthy();
+      return;
+    }
+    expect(response.status).toBe(statusCode);
+    expect(response.data).toBe(title);
+  });
+})
+```
+
 ## コードを確認するテストを成功する関数を作成
 
 src/lambda/hello.jsをsrc/lambda/title.jsに変更して、テストを成功する関数を作成する。
+
+```javascript
+// import { JSDOM } from 'jsdom'
+import cheerio from "cheerio"
+import axios from "axios"
+
+export async function handler(event) {
+  const url = event.queryStringParameters.url;
+  console.log("url: " + url)
+  try {
+    if (url.length == 0) {
+      return {
+        statusCode: 204,
+        body: ""
+      }
+    }
+    const response = await axios.get(url)
+    const body = response.data
+    const $ = cheerio.load(body)
+    const title = $('title').text()
+    console.log("title: " + title)
+    return {
+      statusCode: 200,
+      body: title
+    }
+  } catch (error) {
+    console.log(error)
+    return {
+      statusCode: 204,
+      body: ""
+    }
+  }
+}
+```
 
 ## ボタンをクリックすると呼び出されるメソッドのテストを作成
 
