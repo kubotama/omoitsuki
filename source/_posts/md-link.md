@@ -86,6 +86,7 @@ src/components/MustUi.vueにgetFunctionUrlを作成する。
 | <http://example.com> || 200 | Example Domain |
 | <https://must-kubotama.netlify.app/> || 200 | Markup Support Tool |
 | <https://omoitsuki.netlify.app> || 200 | 思いつきを書くブログ |
+| || 204 | |
 | <http://localhost> || 204 | |
 
 上記を確認するテストを作成する。ファイル名をtitle.node.spec.jsとする。
