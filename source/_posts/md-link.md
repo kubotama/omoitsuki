@@ -64,6 +64,26 @@ export function handler(event, context, callback) {
 | <http://localhost:8080> | <http://localhost:9000/.netlify/functions/title> |
 | <https://must-kubotama.netlify.app/> | <https://must-kubotama.netlify.app/.netlify/functions/title> |
 
+テストをmd.link.spec.jsに作成する。
+
+```javascript
+describe("コードのURLを取得する。", () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallowMount(MustUi);
+  });
+
+  it.each`
+    beforeUrl                                           | afterUrl
+    ${"http://localhost:8080"}                          | ${"http://localhost:9000/.netlify/functions/title"}
+    ${"https://kubotama-sample-functions.netlify.com/"} | ${"https://kubotama-sample-functions.netlify.com/.netlify/functions/title"}
+  `("$beforeUrl -> $afterUrl", ({ beforeUrl, afterUrl }) => {
+    expect(wrapper.vm.getFunctionUrl(beforeUrl)).toBe(afterUrl);
+  });
+});
+```
+
 ## コードのURL取得のテストを成功するメソッドを作成
 
 src/components/MustUi.vueにgetFunctionUrlを作成する。
