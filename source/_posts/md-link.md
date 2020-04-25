@@ -7,9 +7,11 @@ tags:
 
 URLを入力して、Markdownのリンク形式に変換する。たとえば<https://www.google.co.jp/>が入力されたら、\[Google\](<https://www.google.co.jp>)に変換する。表示する見出しは、入力されたURLのwebページのtitleタグから取得する。
 
-webブラウザで実行しているJavaScriptから入力されたURLにアクセスするとCORSとなるため、Netlify Functionsを利用する。Netlify Functionsのコード(この後は、コードとする)で入力されたタイトルを取得して、リンクを作成する。
+webブラウザで実行しているJavaScriptから入力されたURLにアクセスするとCORSとなるため、Netlify Functionsを利用する。
+Netlify Functionsのコード(この後は、コードとする)で入力されたタイトルを取得して、リンクを作成する。
 
-[Netlify functionsを利用したサーバーレスアプリケーションの開発](https://omoitsuki.netlify.app/2020/04/17/functions/)を参考にして、Netlify Functionsのコードと、呼び出すメソッドを作成する。
+[Netlify functionsを利用したサーバーレスアプリケーションの開発](https://omoitsuki.netlify.app/2020/04/17/functions/)を参考にして、
+Netlify Functionsのコードと、呼び出すメソッドを作成する。
 
 ## netlify-lambdaとnetlify-lambdaパッケージのvue-cliプラグインをインストール
 
@@ -261,7 +263,8 @@ hostがlocalhost:9000でuser-agentがaxios/0.19.2でないときに、Access-Con
 - メソッド名はonMdLinkとする。
 - テキスト領域になにも入力されていなければ、なにもしないで終了する。つまりテキスト領域は空白のままである。
 - テキスト領域に入力された文字列をクエリ文字列として、<http://サーバー名/.netlify/functions/title>にGETでアクセスする。サーバー名はアクセスしているwebページと同じとする。
-- ステータスコードが200で返ってきた場合には、テキスト領域をMarkdownのリンク形式に書き換える。たとえば、<http://example.com/>の場合には、[Example Domain](http://example.com/)となる。
+- ステータスコードが200で返ってきた場合には、テキスト領域をMarkdownのリンク形式に書き換える。
+たとえば、<http://example.com/>の場合には、[Example Domain](http://example.com/)となる。
 - ステータスコードが204で返ってきた場合には、なにもしないで終了する。つまりテキスト領域はそのままである。
 
 テストでは、実際にwebページにはアクセスしないでモックを利用する。モックが呼び出された回数と引数を確認する。モックからタイトルを返して、テキスト領域が正しく更新されることを確認する。
@@ -362,9 +365,11 @@ src/components/MustUi.vueのonMdLinkメソッドを作成する。
 
 ## Netlify環境への適用
 
-作成したプログラムをGitのリポジトリにコミットして、GitHubのリポジトリにプッシュする。GitHubのリポジトリとNetlifyのサイトが正しく連携していれば、自動的にNetlifyのサイトが更新されて、自動的にNetlify Functionsが開始される。
+作成したプログラムをGitのリポジトリにコミットして、GitHubのリポジトリにプッシュする。GitHubのリポジトリとNetlifyのサイトが
+正しく連携していれば、自動的にNetlifyのサイトが更新されて、自動的にNetlify Functionsが開始される。
 
-更新されたサイトに表示されるテキストエリアに<http://example.com>を入力して、「Markdownのリンク」ボタンをクリックすると、テキストエリアが\[Example Domain\](<http://example.com>)に更新される。これをコピーしてMarkdownの文書に張り付ければ、Markdownのリンクとなる。
+更新されたサイトに表示されるテキストエリアに<http://example.com>を入力して、「Markdownのリンク」ボタンをクリックすると、
+テキストエリアが\[Example Domain\](<http://example.com>)に更新される。これをコピーしてMarkdownの文書に張り付ければ、Markdownのリンクとなる。
 
 ### Netlify環境とローカル環境の違い
 
