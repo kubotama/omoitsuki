@@ -1,5 +1,6 @@
 ---
 title: 入力したURLからMarkdownのリンク形式に変換
+date: 2020-04-26
 tags:
   - must
   - Netlify
