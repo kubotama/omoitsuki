@@ -208,8 +208,8 @@ export async function handler(event) {
 テスト環境へのアクセスは、以下の3つのパターンがある。
 
 1. テストスクリプトから呼び出される場合
-2. localhost:8080のアクセスしたページで呼び出される場合
-3. IPアドレスでアクセスしたページで呼び出される場合
+2. localhost:8080でアクセスしたページから呼び出される場合
+3. IPアドレスでアクセスしたページから呼び出される場合
 
 2と3はAccess-Control-Allow-Origin属性が適切に定義されていないとCORS違反となる。それぞれの場合のevent.headersの値をまとめる。
 
@@ -219,7 +219,7 @@ export async function handler(event) {
 
 いずれの場合もhostはlocalhost:9000である。
 
-hostがlocalhost:9090でuser-agentがaxios/0.19.2でないときに、Access-Control-Allow-Origin属性を設定する必要があることがわかる。2の場合、refererとoriginでは最後の/の有無の違いがある。refererをAccess-Control-Allow-Origin属性に設定してもCORS違反となるため、hostを設定する。3の場合には、refererを設定することでCORS違反は発生しない。
+hostがlocalhost:9000でuser-agentがaxios/0.19.2でないときに、Access-Control-Allow-Origin属性を設定する必要があることがわかる。2の場合、refererとoriginでは最後の/の有無の違いがある。Access-Control-Allow-Origin属性にrefererを設定してもCORS違反となるため、hostを設定する。3の場合には、refererを設定することでCORS違反は発生しない。
 
 ## ボタンをクリックすると呼び出されるメソッドのテストを作成
 
