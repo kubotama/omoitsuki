@@ -299,6 +299,17 @@ Markdownのリンクを作成するには、指定されたURLのwebページの
 
 expectの前にflushPromisesを実行することで、非同期の処理が完了されるため、正しくテストできる。
 
+### モックが呼び出される回数の初期化
+
+axiosをモックで置き換えて呼び出される回数を確認しているが、デフォルトの設定では呼び出される回数はテストにまたがって累積される。テストごとに初期化するには、jest.config.jsに以下の設定を追加する。
+
+```javascript
+module.exports = {
+  ...
+  clearMocks: true
+}
+```
+
 ## メソッドを確認するテストを成功するメソッドを作成
 
 src/components/MustUi.vueのonMdLinkメソッドを作成する。
