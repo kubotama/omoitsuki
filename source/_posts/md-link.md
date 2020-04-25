@@ -213,9 +213,42 @@ export async function handler(event) {
 
 2と3はAccess-Control-Allow-Origin属性が適切に定義されていないとCORS違反となる。それぞれの場合のevent.headersの値をまとめる。
 
-1はrefererとoriginが未定義、user-agentがaxios/0.19.2
-2はrefererが<http://localhost:8080/>、originが<http://localhost:8080>、user-agentがMozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36
-3はrefererが<http://IPアドレス:8080/>、originが未定義、user-agentがMozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36
+<table style="table-layout: fixed">
+  <tr>
+    <th class=id-number></th>
+    <th class=url>referer</th>
+    <th class=url>origin</th>
+    <th>user-agent</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>未定義</td>
+    <td>未定義</td>
+    <td>axios/0.19.2</td>
+  <tr>
+    <td>2</td>
+    <td><a href=http://localhost:8080/>http://localhost:8080/</a></td>
+    <td><a href=http://localhost:8080>http://localhost:8080</a></td>
+    <td>Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>http://IPアドレス:8080/</a></td>
+    <td>未定義</td>
+    <td>Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36</td>
+  </tr>
+</table>
+
+<span>
+<style>
+.id-number{
+  width: 5%;
+}
+.url{
+  width: 20%;
+}
+</style>
+</span>
 
 いずれの場合もhostはlocalhost:9000である。
 
