@@ -88,6 +88,17 @@ describe("コードのURLを取得する。", () => {
 
 src/components/MustUi.vueにgetFunctionUrlを作成する。
 
+```javascript
+    getFunctionUrl(pageUrl) {
+      const url = new URL(pageUrl);
+      if (url.hostname === "localhost") {
+        url.port = 9000;
+      }
+      url.pathname = ".netlify/functions/title";
+      return url.href;
+    }
+```
+
 ## コードを確認するテストを作成
 
 コードの仕様を以下のとおりとする。
