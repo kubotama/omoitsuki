@@ -238,9 +238,9 @@ hostがlocalhost:9000でuser-agentがaxios/0.19.2でないときに、Access-Con
 | テキスト領域 | モックが呼び出された回数 | モックの引数 | ボタンをクリックした後のテキスト領域 |
 |--------------|--------------------------|--------------|--------------------------------------|
 | (空白) | 0 | なし | (空白) |
-| <http://example.com/> | 1 | <http://example.com/> | \[Example Domain\](<http://example.com/>) |
-| <https://must-kubotama.netlify.app/> | 1 | <https://must-kubotama.netlify.app/> | \[Markup Support Tool\](<https://must-kubotama.netlify.app/>) |
-| <http://localhost> | 1 | <http://localhost> | <http://localhost> |
+| <http://example.com/> | 1 | <http://localhost:9000/.netlify/functions/title?url=http://example.com/> | \[Example Domain\](<http://example.com/>) |
+| <https://must-kubotama.netlify.app/> | 1 | <http://localhost:9000/.netlify/functions/title?url=https://must-kubotama.netlify.app/> | \[Markup Support Tool\](<https://must-kubotama.netlify.app/>) |
+| <http://localhost> | 1 | <http://localhost:9000/.netlify/functions/title?url=http://localhost> | <http://localhost> |
 
 上記を確認するテストを作成する。ファイル名をmd.link.spec.jsとする。
 
