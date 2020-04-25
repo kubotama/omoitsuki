@@ -172,8 +172,8 @@ export async function handler(event) {
 2と3はAccess-Control-Allow-Origin属性が適切に定義されていないとCORS違反となる。それぞれの場合のevent.headersの値をまとめる。
 
 1はrefererとoriginが未定義、user-agentがaxios/0.19.2
-2はrefererがhttp://localhost:8080/、originがhttp://localhost:8080、user-agentがMozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36
-3はrefererがhttp://IPアドレス:8080/、originが未定義、user-agentがMozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36
+2はrefererが<http://localhost:8080/>、originが<http://localhost:8080>、user-agentがMozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36
+3はrefererが<http://IPアドレス:8080/>、originが未定義、user-agentがMozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.122 Safari/537.36
 
 いずれの場合もhostはlocalhost:9000である。
 
