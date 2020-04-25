@@ -296,3 +296,16 @@ describe("ボタンをクリックすると呼び出されるメソッドのテ�
 ## メソッドを確認するテストを成功するメソッドを作成
 
 src/components/MustUi.vueのonMdLinkメソッドを作成する。
+
+```javascript
+    async onMdLink() {
+      if (this.mustArea.length == 0) {
+        return
+      }
+      const url = this.getFunctionUrl(window.location.href) + "?url=" + this.mustArea
+      const res = await axios.get(url)
+      if (res.status == 200) {
+        this.mustArea = '[' + res.data + "](" + this.mustArea + ")"
+      }
+    },
+```
