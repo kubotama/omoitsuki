@@ -326,3 +326,13 @@ src/components/MustUi.vueのonMdLinkメソッドを作成する。
       }
     },
 ```
+
+## Netlify環境への適用
+
+作成したプログラムをGitのリポジトリにコミットして、GitHubのリポジトリにプッシュする。GitHubのリポジトリとNetlifyのサイトが正しく連携していれば、自動的にNetlifyのサイトが更新されて、自動的にNetlify Functionsが開始される。
+
+更新されたサイトに表示されるテキストエリアに<http://example.com>を入力して、「Markdownのリンク」ボタンをクリックすると、テキストエリアが\[Example Domain\](<http://example.com>)に更新される。これをコピーしてMarkdownの文書に張り付ければ、Markdownのリンクとなる。
+
+### Netlify環境とローカル環境の違い
+
+Netlify Functionsのコードのreturn、つまりレスポンスのheaders属性を[]にすると、ローカル環境では問題は発生しないが、Netlify環境ではステータスコードが502となってエラーになる。headers属性を{}にすると、問題は発生しない。
