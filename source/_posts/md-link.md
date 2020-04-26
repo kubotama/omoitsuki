@@ -6,11 +6,12 @@ tags:
   - Netlify
 ---
 
-URLを入力して、Markdownのリンク形式に変換する。たとえば<https://www.google.co.jp/>が入力されたら、\[Google\](<https://www.google.co.jp>)に変換する。表示する見出しは、入力されたURLのwebページのtitleタグから取得する。
+入力されたURLをMarkdownのリンク形式、すなわち\[見出し\](URL)に変換する。たとえば<https://www.google.co.jp/>が入力されたら、\[Google\](<https://www.google.co.jp>)に変換する。表示する見出しは、入力されたURLのwebページのtitleタグから取得する。
 
-webブラウザで実行しているJavaScriptから入力されたURLにアクセスするとCORSとなるため、Netlify Functionsを利用する。
-Netlify Functionsのコード(この後は、コードとする)で入力されたタイトルを取得して、リンクを作成する。
+webブラウザで実行しているJavaScriptから入力されたURLにアクセスするとCORSに違反するため、Netlify Functionsを利用する。
+Netlify Functionsのコード(この後は、コードとする)でタイトルを取得して、リンク形式に変換する。
 
+GitHubのリポジトリの作成、GitHubとNetlifyのサイトの関連付け、Vue.jsのプロジェクトの作成は
 [Netlify functionsを利用したサーバーレスアプリケーションの開発](https://omoitsuki.netlify.app/2020/04/17/functions/)を参考にして、
 Netlify Functionsのコードと、呼び出すメソッドを作成する。
 
@@ -28,7 +29,7 @@ Netlify Functionsをローカル環境でテストするために、以下のコ
 % vue add netlify-lambda
 ```
 
-プラグインをインストールすると、以下のファイルが生成される。
+プラグインをインストールすると、netlify.tomlとsrc/lambda/hello.jsが生成される。
 
 netlify.toml
 
@@ -51,9 +52,9 @@ export function handler(event, context, callback) {
 }
 ```
 
-### コードのURL取得のテストを作成
+### コードのURLを取得するメソッドのテストを作成
 
-コードのURLを返すメソッドのテストを追加する。テストの要件は以下の通りとする。
+コードのURLを返すメソッドのテストを作成する。テストの要件は以下の通りとする。
 
 - メソッド名をgetFunctionUrlとする。MustUi.vueに定義する。
 - 引数としてアクセスしているwebページのURL(location.href)を受け取る。
@@ -87,7 +88,7 @@ describe("コードのURLを取得する。", () => {
 });
 ```
 
-## コードのURL取得のテストを成功するメソッドを作成
+## コードのURLを取得するメソッドを作成
 
 src/components/MustUi.vueにgetFunctionUrlを作成する。
 
@@ -157,9 +158,9 @@ describe("Netlify Functionsから返されるステータスコードとデー�
 })
 ```
 
-## コードを確認するテストを成功する関数を作成
+## Netlify Functionsのコードを作成
 
-src/lambda/hello.jsをsrc/lambda/title.jsに変更して、テストを成功する関数を作成する。
+src/lambda/hello.jsをsrc/lambda/title.jsに変更して、コードを作成する。
 
 ```javascript
 import cheerio from "cheerio"
@@ -208,13 +209,13 @@ export async function handler(event) {
 
 ### CORS違反を回避
 
-Netlify Functionsのローカルでのテスト環境では、webページとは別のポートにアクセスする。そのため、webブラウザ環境のJavaScriptからアクセスするとCORS違反になる。Netlify環境では同じポートになるため、CORS違反はg発生しない。
+Netlify Functionsのローカルでのテスト環境では、webページとは別のポートにアクセスする。そのため、webブラウザ環境のJavaScriptからアクセスするとCORS違反になる。Netlify環境では同じポートになるため、CORS違反は発生しない。
 
 テスト環境へのアクセスは、以下の3つのパターンがある。
 
-1. テストスクリプトから呼び出される場合
-2. localhost:8080でアクセスしたページから呼び出される場合
-3. IPアドレスでアクセスしたページから呼び出される場合
+1. テストから呼び出される場合
+2. webブラウザでlocalhost:8080でアクセスしたページから呼び出される場合
+3. webブラウザでIPアドレス:8080でアクセスしたページから呼び出される場合
 
 2と3はAccess-Control-Allow-Origin属性が適切に定義されていないとCORS違反となる。それぞれの場合のevent.headersの値をまとめる。
 2と3はUbuntu 18.04上のChromeでアクセスした場合の値である。
@@ -271,7 +272,7 @@ hostがlocalhost:9000でuser-agentがaxios/0.19.2でないときに、Access-Con
 たとえば、<http://example.com/>の場合には、[Example Domain](http://example.com/)となる。
 - ステータスコードが204で返ってきた場合には、なにもしないで終了する。つまりテキスト領域はそのままである。
 
-テストでは、実際にwebページにはアクセスしないでモックを利用する。モックが呼び出された回数と引数を確認する。モックからタイトルを返して、テキスト領域が正しく更新されることを確認する。
+テストでは、実際にNetlify Functionsのコードにはアクセスしないでモックを利用する。モックが呼び出された回数と引数を確認する。モックからタイトルを返して、テキスト領域が正しく更新されることを確認する。
 
 上記の仕様を確認するテストパターンは以下の通りとする。
 
@@ -350,7 +351,7 @@ module.exports = {
 }
 ```
 
-## メソッドを確認するテストを成功するメソッドを作成
+## ボタンをクリックすると呼び出されるメソッドを作成
 
 src/components/MustUi.vueのonMdLinkメソッドを作成する。
 
@@ -365,6 +366,35 @@ src/components/MustUi.vueのonMdLinkメソッドを作成する。
         this.mustArea = '[' + res.data + "](" + this.mustArea + ")"
       }
     },
+```
+
+## ボタンとテキストエリアを表示するvueコンポーネントを作成
+
+URLを入力するテキストエリアとクリックするボタンのあるコンポーネントを作成する。ファイル名はMustUi.vueとする。
+
+```javascript
+<template>
+  <div class="must-ui">
+    <div class="must-title">Markup Support Tool</div>
+    <div>
+      <button id='mdLinkButton' @click=onMdLink>Markdownのリンク</button>
+    </div>
+    <textarea class='must-area' id='mustArea' placeholder="文字列を入力してください" v-model="mustArea"></textarea>
+  </div>
+</template>
+
+<script>
+import axios from "axios"
+
+export default {
+  name: 'MustUi',
+  data() {
+    return {
+      mustArea: ''
+    }
+  },
+  // ここに上記のonMdClickとgetFunctionUrlを書く
+}
 ```
 
 ## Netlify環境への適用
