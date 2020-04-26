@@ -208,6 +208,8 @@ export async function handler(event) {
 
 ### CORS違反を回避
 
+Netlify Functionsのローカルでのテスト環境では、webページとは別のポートにアクセスする。そのため、webブラウザ環境のJavaScriptからアクセスするとCORS違反になる。Netlify環境では同じポートになるため、CORS違反はg発生しない。
+
 テスト環境へのアクセスは、以下の3つのパターンがある。
 
 1. テストスクリプトから呼び出される場合
@@ -215,6 +217,7 @@ export async function handler(event) {
 3. IPアドレスでアクセスしたページから呼び出される場合
 
 2と3はAccess-Control-Allow-Origin属性が適切に定義されていないとCORS違反となる。それぞれの場合のevent.headersの値をまとめる。
+2と3はUbuntu 18.04上のChromeでアクセスした場合の値である。
 
 <table style="table-layout: fixed">
   <tr>
