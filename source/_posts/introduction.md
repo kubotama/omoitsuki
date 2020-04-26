@@ -6,7 +6,7 @@ tags:
   - Hexo
 ---
 
-このサイトでは、[MarkUp Support Tool(MUST)](https://must-kubotama.netlify.com/)の開発と、このサイトをHexoで構築するときに、JavaScriptやvue.js, Netlifyなど思いついたことを書く。
+このサイトでは、[MarkUp Support Tool(MUST)](https://github.com/kubotama/must-netlify)の開発と、このサイトをHexoで構築するときに、JavaScriptやvue.js, Netlifyなど思いついたことを書く。
 
 MUSTは、以下の機能がある。
 
