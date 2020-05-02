@@ -10,6 +10,8 @@ tags:
 
 このwebサイト([GLIPAH: Global IP Address History](https://glipah.netlify.app/))にアクセスすると、プロバイダーに割り当てられているグローバルなIPアドレスを確認できる。IPアドレスは、サーバーに保存しない。ただし、Googleアナリティクスでアクセス情報を収集している。
 
+ソースコードは[GitHub \- kubotama/glipah: Global IP Address History](https://github.com/kubotama/glipah)にある。
+
 ## 構築方法
 
 GitHubのリポジトリの作成、GitHubのリポジトリとNetlifyのサイトの関連付け、GitHubのリポジトリのローカルの環境へのクローン、vueプロジェクトの作成、Netlify Functionのパッケージのインストールなどは、[Netlify functionsを利用したサーバーレスアプリケーションの開発](https://omoitsuki.netlify.app/2020/04/17/functions/)の通りとする。
