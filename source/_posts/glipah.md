@@ -12,10 +12,7 @@ tags:
 
 ## 構築方法
 
-GitHubのリポジトリの作成、GitHubとNetlifyのサイトの関連付け、Vue.jsのプロジェクトの作成は
-[Netlify functionsを利用したサーバーレスアプリケーションの開発](https://omoitsuki.netlify.app/2020/04/17/functions/)を参考にする。
-
-GitHubのリポジトリの作成、GitHubのリポジトリとNetlifyのサイトの関連付け、GitHubのリポジトリのローカルの環境へのクローン、vueプロジェクトの作成、Netlify Functionのパッケージのインストールなどは、上記のリンク先の通りとする。
+GitHubのリポジトリの作成、GitHubのリポジトリとNetlifyのサイトの関連付け、GitHubのリポジトリのローカルの環境へのクローン、vueプロジェクトの作成、Netlify Functionのパッケージのインストールなどは、[Netlify functionsを利用したサーバーレスアプリケーションの開発](https://omoitsuki.netlify.app/2020/04/17/functions/)の通りとする。
 
 ## ファンクションの作成
 
