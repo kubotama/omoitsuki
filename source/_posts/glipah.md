@@ -1,5 +1,6 @@
 ---
 title: グローバルIPアドレスを確認するwebサイトの作成
+date: 2020-05-04
 tags:
   - Netlify
   - Vue.js
