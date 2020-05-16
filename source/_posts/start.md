@@ -1,6 +1,6 @@
 ---
 title: Netlify Functionsのローカル環境をyarn startで起動する設定
-# date: 2020-05-11 15:51:32
+date: 2020-05-11 15:51:32
 tags:
   - Netlify
 ---
