@@ -1,5 +1,13 @@
 {
   "cSpell.words": [
     "hljs"
+  ],
+  "cSpell.ignoreWords": [
+    "changefreq",
+    "gitmodule",
+    "goldmark",
+    "mainroad",
+    "markdownlist",
+    "submodule"
   ]
 }
