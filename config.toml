@@ -1,3 +1,33 @@
-baseURL = "http://example.org/"
-languageCode = "en-us"
-title = "My New Hugo Site"
+baseURL = "https://omoitsuki.netlify.app/"
+languageCode = "ja"
+DefaultContentLanguage = "ja"
+title = "思いつきを書くブログ"
+theme = "mainroad"
+googleAnalytics = "UA-107278500-2"
+
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+[params]
+  highlightColor = "#1133cc"
+  toc = true
+  post_meta = ["date"]
+
+# メインメニュー
+[[Menus.main]]
+  Name = "ホーム"
+  URL = "/"
+[[Menus.main]]
+  Name = "投稿一覧"
+  URL = "/posts/"
+
+[[Menus.footer]]
+  Name = "プライバシーポリシー"
+  URL = "/privacy/"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
