@@ -50,7 +50,7 @@ $ROOT_DIRの親ディレクトリで、以下のコマンドを実行して、�
 hugo new site blog --force
 ```
 
-## テーマのダウンロード
+## テーマの設定
 
 テーマは[Mainroad](https://github.com/vimux/mainroad/)を利用します。$ROOT_DIR/themesで、以下のコマンドを実行して、サブモジュールとしてクローンします。
 
@@ -59,3 +59,60 @@ git submodule add https://github.com/vimux/mainroad
 ```
 
 作成された.gitmoduleとthemes/mainroadをgitにコミットします。
+
+## Hugoの環境設定ファイル(config.toml)を作成
+
+config.tomlを以下のように修正しました。
+
+```yaml
+baseURL = "https://omoitsuki.netlify.app/"
+languageCode = "ja"
+DefaultContentLanguage = "ja"
+title = "思いつきを書くブログ"
+theme = "mainroad"
+googleAnalytics = "UA-107278500-2"
+
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+[params]
+  highlightColor = "#1133cc"
+  toc = true
+  post_meta = ["date"]
+
+# メインメニュー
+[[Menus.main]]
+  Name = "ホーム"
+  URL = "/"
+[[Menus.main]]
+  Name = "投稿一覧"
+  URL = "/posts/"
+
+[[Menus.footer]]
+  Name = "プライバシーポリシー"
+  URL = "/privacy/"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+```
+
+## Netlifyのビルド設定ファイル(netlify.toml)を更新
+
+netlify.tomlを以下のように修正しました。
+
+```yaml
+[build]
+publish = "public"
+command = "hugo --theme=mainroad --gc --minify"
+
+[context.production.environment]
+HUGO_ENV = "production"
+```
+
+## コンテンツの復元
+
+### 画像の組み込み
