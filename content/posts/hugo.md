@@ -100,6 +100,16 @@ googleAnalytics = "UA-107278500-2"
       unsafe = true
 ```
 
+主な修正点は以下の通りです。
+
+| セクション | 属性 | 影響 |
+|-----|-----|-----|
+| | DefaultContentLanguage | Hugoが生成するメッセージが日本語になります |
+| params | toc | 各ページの先頭に目次が作成されます |
+| params | post_meta | サマリーおよび各ページに日付が表示されます |
+| [Menus.main] | | メインメニューを設定します |
+| markup.goldmark.renderer | unsafe | HTMLを処理します |
+
 ## Netlifyのビルド設定ファイル(netlify.toml)を更新
 
 netlify.tomlを以下のように修正しました。
