@@ -125,4 +125,15 @@ HUGO_ENV = "production"
 
 ## コンテンツの復元
 
+$/ROOT_DIR/source/_postsにあった、Markdownファイルと画像ファイルを$ROOT_DIR/content/postsに復元します。
+
+### サマリーの表示
+
 ### 画像の組み込み
+
+画像ファイルは、エントリーのファイル名から拡張子(.md)を取り除いたディレクトリに保存します。
+たとえば、glipah110.mdが参照している画像ファイルはglipah110ディレクトリに置きます。
+
+### faviconの復元
+
+favicon.icoを$ROOT_DIR/staticに置きます。
