@@ -1,7 +1,6 @@
 ---
 title: Hugoへの移行
-date: 2020-05-19T23:07:47+09:00
-draft: true
+date: 2020-05-23
 tags:
   - Hugo
 ---
