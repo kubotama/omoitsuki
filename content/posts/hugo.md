@@ -125,9 +125,12 @@ HUGO_ENV = "production"
 
 ## コンテンツの復元
 
-$/ROOT_DIR/source/_postsにあった、Markdownファイルと画像ファイルを$ROOT_DIR/content/postsに復元します。
+$/ROOT_DIR/source/_postsにあったMarkdownファイルと画像ファイルを$ROOT_DIR/content/postsに復元します。
 
 ### サマリーの表示
+
+Hugoには、サマリーに表示するテキストを指定できる機能があります。先頭から<!\-\-more\-\->まで表示されます。
+各ページの適切な場所に、<!\-\-more\-\->を挿入します。
 
 ### 画像の組み込み
 
@@ -137,3 +140,7 @@ $/ROOT_DIR/source/_postsにあった、Markdownファイルと画像ファイル
 ### faviconの復元
 
 favicon.icoを$ROOT_DIR/staticに置きます。
+
+<hr>
+
+以上でHugoへの移行が完了です。
