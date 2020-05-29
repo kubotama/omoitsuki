@@ -140,7 +140,7 @@ import Vuetify from "vuetify";
 Vue.use(Vuetify);
 ```
 
-## Vue Devtoolsのダウンロードを勧めるメッセージを表示しないように設定した
+## Vue Devtoolsのダウンロードを勧めるメッセージを表示しないように設定
 
 テストを実行すると以下のメッセージが表示されます。
 
@@ -154,7 +154,7 @@ tests/unit/setup.jsに以下を追加することでメッセージが表示さ�
 Vue.config.devtools = false;
 ```
 
-## productionモードでデプロイすることを勧めるメッセージを表示しないように設定した
+## productionモードでデプロイすることを勧めるメッセージを表示しないように設定
 
 テストを実行すると以下のメッセージが表示されます。
 
