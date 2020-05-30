@@ -82,6 +82,8 @@ Vuetifyのサイトの[ダイアログの使い方](https://vuetifyjs.com/ja/com
 
 Vuetifyを追加することでbuttonの見た目が変わってしまうため、buttonをv-btnに置き替えます。
 
+<img src="vuetify-button.png" alt="GLIPAHの画面" style="border:1px solid #000000;" />
+
 v-btnに置き換えると、以下のテストで失敗します。
 
 ```javascript
