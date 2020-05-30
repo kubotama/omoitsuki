@@ -1,6 +1,6 @@
 ---
 title: プライバシーポリシーのページを追加
-date: 2020-05-27
+date: 2020-05-30
 ---
 
 Googleアナリティクスを利用する場合にはプライバシーポリシーを表示することが義務付けられているため、[GLIPAH](https://glipah.netlify.app/)サイトにプライバシーポリシーのページを追加しました。[GLIPAH](https://glipah.netlify.app/)サイトはページ遷移がないため、ページ遷移のない方法を探したところ、[Vuetify](https://vuetifyjs.com/ja/)のdialogを利用する方法を利用することにしました。
