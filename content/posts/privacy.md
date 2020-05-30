@@ -81,6 +81,9 @@ Vuetifyのサイトの[ダイアログの使い方](https://vuetifyjs.com/ja/com
 #### buttonをv-btnに置き替え(clickイベントをclick.nativeに書き換え)
 
 Vuetifyを追加することでbuttonの見た目が変わってしまうため、buttonをv-btnに置き替えます。
+buttonの枠の線がなくなって、立体的に見えなくなります。下の図は、buttonとv-btnを並べていますが、buttonの周囲の枠がありません。
+
+<img src="vuetify-button.png" alt="ボタンの違い" style="border:1px solid #000000;" />
 
 v-btnに置き換えると、以下のテストで失敗します。
 
