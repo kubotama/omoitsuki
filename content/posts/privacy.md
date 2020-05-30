@@ -85,8 +85,6 @@ buttonの枠の線がなくなって、立体的に見えなくなります。�
 
 <img src="vuetify-button.png" alt="ボタンの違い" style="border:1px solid #000000;" />
 
-<img src="vuetify-button.png" alt="GLIPAHの画面" style="border:1px solid #000000;" />
-
 v-btnに置き換えると、以下のテストで失敗します。
 
 ```javascript
