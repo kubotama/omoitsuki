@@ -439,7 +439,7 @@ axios.getとDateをモックにして、テストデータを返します。
 ipHistory配列への代入を以下のように修正します。
 
 ```javascript
-addIpHistory(id, ipAddress, accessDate) {
+    addIpHistory(id, ipAddress, accessDate) {
       const index = this.ipHistory.findIndex(
         address => address.ipAddress === ipAddress
       );
