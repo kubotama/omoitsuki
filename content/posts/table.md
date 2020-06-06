@@ -413,3 +413,52 @@ axios.getとDateをモックにして、テストデータを返します。
   </tbody>
 </table>
 
+## プログラムの修正
+
+テンプレートを以下のように修正します。
+
+```html
+        <thead>
+          <tr>
+            <th>IPアドレス</th>
+            <th>アクセス回数</th>
+            <th>初回のアクセス日時</th>
+            <th>最新のアクセス日時</th>
+          </tr>
+        </thead>
+        <tbody v-for="item in ipHistory" :key="item.ipAddress">
+          <tr>
+            <td>{{ item.ipAddress }}</td>
+            <td>{{ item.accessCount }}</td>
+            <td>{{ item.firstAccessDate }}</td>
+            <td>{{ item.lastAccessDate }}</td>
+          </tr>
+        </tbody>
+```
+
+ipHistory配列への代入を以下のように修正します。
+
+```javascript
+addIpHistory(id, ipAddress, accessDate) {
+      const index = this.ipHistory.findIndex(
+        address => address.ipAddress === ipAddress
+      );
+      if (index == -1) {
+        this.ipHistory.unshift({
+          id: id,
+          ipAddress: ipAddress,
+          accessCount: 1,
+          firstAccessDate: accessDate,
+          lastAccessDate: accessDate
+        });
+      } else {
+        if (this.ipHistory[index].firstAccessDate > accessDate) {
+          this.ipHistory[index].firstAccessDate = accessDate;
+        }
+        if (this.ipHistory[index].lastAccessDate < accessDate) {
+          this.ipHistory[index].lastAccessDate = accessDate;
+        }
+        this.ipHistory[index].accessCount++;
+      }
+    },
+```
