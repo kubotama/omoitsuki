@@ -1,6 +1,6 @@
 ---
 title: IPアドレスの一覧表の形式を修正
-date: 2020-05-30
+date: 2020-06-06
 ---
 
 [GLIPAH](https://glipah.netlify.app/)サイトのIPアドレスの一覧表の形式を変更します。
