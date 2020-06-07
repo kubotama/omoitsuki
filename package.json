@@ -1,0 +1,14 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:kubotama/omoitsuki.git",
+  "author": "kubotama <16697573+kubotama@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+    "textlint": "^11.6.3",
+    "textlint-rule-preset-ja-spacing": "^2.0.1",
+    "textlint-rule-preset-ja-technical-writing": "^3.1.3",
+    "textlint-rule-spellcheck-tech-word": "^5.0.0"
+  }
+}
