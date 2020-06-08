@@ -9,6 +9,7 @@
         "preferInList": "である",
         "strict": true
     },
+    "preset-jtf-style": true,
     "spellcheck-tech-word": true
   }
 }
