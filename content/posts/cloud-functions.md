@@ -1,6 +1,8 @@
 ---
 title: "Cloud Functions for Firebaseのチュートリアルがビルド時にエラー"
-date: 2022-06-06+09:00
+date: 2022-06-06
+tags:
+  - Cloud Functions for Firebase
 ---
 
 ## まとめ
