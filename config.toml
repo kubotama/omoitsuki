@@ -3,7 +3,7 @@ languageCode = "ja"
 DefaultContentLanguage = "ja"
 title = "思いつきを書くブログ"
 theme = "mainroad"
-googleAnalytics = "UA-107278500-2"
+googleAnalytics = "G-ZLZ0JHSPSL"
 
 [sitemap]
   changefreq = "monthly"
