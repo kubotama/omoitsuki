@@ -1,6 +1,9 @@
 ---
 title: "URLを選択する機能を追加"
 date: 2022-06-28
+tag:
+  - VSCode
+  - Markdown
 ---
 
 ## 概要
