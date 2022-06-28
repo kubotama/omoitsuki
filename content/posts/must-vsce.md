@@ -21,6 +21,8 @@ Markdown などのマークアップ言語で Web ページへのリンクを作
 1. タイトルの前後のサイト名などを削除する。
 1. URL に追加されているアクセス経路の集計などのためのフラグなどを削除する。
 
+<!--more-->
+
 具体的な例で説明します。
 
 たとえば、`https://xtech.nikkei.com/atcl/nxt/column/18/00849/00081/?n_cid=nbpnxt_mled_itmh` という URL を選択して、コマンドパレットから`Must: Format Link from URL`コマンドを実行すると、選択されている URL は以下の文字列に置き替えられます。
