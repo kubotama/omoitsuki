@@ -7,15 +7,17 @@ date: 2022-06-06+09:00
 
 ### 問題点
 
-[Cloud Functions for Firebaseのチュートリアル](https://firebase.google.com/docs/functions/get-started)で[プロジェクトの初期化](https://firebase.google.com/docs/functions/get-started#initialize-your-project)を実行した後にbuildあるいはserveなどを実行するとエラーになる。
+[Cloud Functions for Firebase のチュートリアル](https://firebase.google.com/docs/functions/get-started)で[プロジェクトの初期化](https://firebase.google.com/docs/functions/get-started#initialize-your-project)を実行した後に build あるいは serve などを実行するとエラーになる。
 
 ### 解決策
 
-@types/node, @types/react, @types/react-domをインストールする。
+@types/node, @types/react, @types/react-dom をインストールする。
+
+<!--more-->
 
 ### 詳細
 
-Next.jsを利用してFirebase Hostingのサイトを開発している途中で、firebase init functionsを実行してCloud Functions for Firebase(CFfF)を追加した。作成されたfunctionsディレクトリでyarn buildあるいはyarn serveを実行すると以下のエラーになる。
+Next.js を利用して Firebase Hosting のサイトを開発している途中で、firebase init functions を実行して Cloud Functions for Firebase(CFfF)を追加した。作成された functions ディレクトリで yarn build あるいは yarn serve を実行すると以下のエラーになる。
 
 ```shell
 $ yarn build
