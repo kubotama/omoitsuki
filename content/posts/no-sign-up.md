@@ -69,5 +69,22 @@ Next.js でサイトを構築しています。
 上記の設定で UI からのサイプアップは禁止できるが、REST API 経由でのサイプアップは禁止できないとのこと。
 
 > Note that this flag will only disable sign up from the UI and will not prevent sign up via REST API. It is highly recommended that Identity Platform projects enforce this policy via one of these 2 mechanisms:
+>
+> - Blocking functions: Set a beforeCreate trigger to disable sign up for email providers.
+> - In the Cloud Console / Settings / USERS tab, uncheck Enable create (sign-up) checkbox. Though for this setting, sign up for all providers will be disabled.
 
 勧められている Identity Platform は有料プランが前提のため未確認です。
+
+## 追記
+
+有料プランに切り替えて検証したところ、以下の手順で UI からのサインアップが禁止できることを確認しました。
+
+1. Identity Platform を有効にします。この時点で有料プランへの切り替えが必要です。
+
+1. Identigy Platform の設定画面を開きます。
+
+1. ユーザータブにあるユーザーアクションの「作成を可能にする（登録する）」チェックボックスのチェックを外すと、ユーザーの登録ができなくなります。具体的には、メールアドレス、氏名、パスワードを入力した後に、
+
+> Firebase: This operation is restricted to administrators only. (auth/admin-restricted-operation)
+
+というメッセージが表示されてユーザーを登録できません。
