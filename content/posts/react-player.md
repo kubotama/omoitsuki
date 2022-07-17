@@ -1,6 +1,6 @@
 ---
 title: "Cloud Storage for FirebaseにあるwavファイルをReact Playerで再生する"
-date: 2022-07-16T11:40:28+09:00
+date: 2022-07-17
 tags:
   - React
   - Firebase
