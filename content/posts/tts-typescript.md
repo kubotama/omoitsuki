@@ -100,9 +100,19 @@ $ yarn start
 
 テキストを音声に変換する API である synthesizeSpeech でオプションを指定することが可能です。オプションの一部は[ISynthesizeSpeechRequest - Documentation](https://googleapis.dev/nodejs/text-to-speech/latest/google.cloud.texttospeech.v1.ISynthesizeSpeechRequest.html)で説明されていますが、説明されていないオプションもいくつかあります。
 
+### voice
+
+#### name
+
 一つは voice 属性の中の name 属性です。[IVoiceSelectionParams - Documentation](https://googleapis.dev/nodejs/text-to-speech/latest/google.cloud.texttospeech.v1.IVoiceSelectionParams.html)には string とだけ書かれていて、具体的にどのような値を設定すればいいのか書かれていません。ここで参考になるのが[Text-to-Speech: Lifelike Speech Synthesis  |  Google Cloud](https://cloud.google.com/text-to-speech)のデモです。Voice name で指定した値が name 属性に設定されます。Voice name のメニュー項目は、Language/locale と Voice type で決まります。たとえば、Language/locale が English (United States)で Voice type が WaveNet の場合、メニュー項目は en-US-Wavenet-A から J の 10 項目です。Voice type が Basic の場合、en-US-standard-A から J の 10 項目です。つまり name 属性で WaveNet 形式か standard 形式かを指定します。
 
+### AudioConfig
+
 [IAudioConfig - Documentation](https://googleapis.dev/nodejs/text-to-speech/latest/google.cloud.texttospeech.v1.IAudioConfig.html)には、AudioConfig 属性の中の speakingRate, pitch, volumeGainDb, sampleRateHertz 属性は number, effectsProfileId 属性は string の配列とだけ書かれています。
+
+属性名から、volumeGainDb は音量、sampleRateHertz はサンプリング周波数に関係があるのではないかと考えますが、詳しい情報は見当たりませんでした。
+
+#### effectsProfileId
 
 effectsProfileId は以下のような値を設定するようです。
 
@@ -118,4 +128,10 @@ effectsProfileId は以下のような値を設定するようです。
 | Car speaker                             | large-automotive-class-device         |
 | Interactive Voice Response (IVR) system | telephony-class-application           |
 
-デモでは speakingRate は 0.25 から 4 の間の値を設定します。変換される音声の速度を設定しています。pitch は-20 から 20 の値を設定します。音声の高さを設定しています。属性名から、volumeGainDb は音量、sampleRateHertz はサンプリング周波数に関係があるのではないかと考えますが、詳しい情報は見当たりませんでした。
+#### speakingRate
+
+デモでは speakingRate は 0.25 から 4 の間の値を設定します。変換される音声の速度を設定しています。
+
+#### pitch
+
+pitch は-20 から 20 の値を設定します。音声の高さを設定しています。
