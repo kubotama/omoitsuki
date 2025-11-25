@@ -6,8 +6,8 @@
   "dependencies": {},
   "devDependencies": {
     "autoprefixer": "^10.4.16",
-    "eslint": "^5.15.3",
-    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint": "^9.39.1",
+    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-node": "^7.0.1",
     "postcss-cli": "^10.1.0",
